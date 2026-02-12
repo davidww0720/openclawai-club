@@ -1,0 +1,7 @@
+name = "openclawai-club"
+compatibility_date = "2026-02-12"
+
+# Cloudflare Pages will manage routes; this is mainly for local preview via wrangler.
+
+[vars]
+NODE_VERSION = "22"

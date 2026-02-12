@@ -1,0 +1,31 @@
+{
+  "name": "openclawai-club",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "cf:build": "next build",
+    "cf:preview": "opennextjs-cloudflare",
+    "pages:build": "next build && opennextjs-cloudflare build"
+  },
+  "dependencies": {
+    "next": "15.5.10",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@opennextjs/cloudflare": "^1.16.4",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^18.3.28",
+    "@types/react-dom": "^18.3.7",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.10",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "wrangler": "^4.64.0"
+  }
+}
