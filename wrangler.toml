@@ -1,7 +1,12 @@
 name = "openclawai-club"
 compatibility_date = "2026-02-12"
 
-# Cloudflare Pages will manage routes; this is mainly for local preview via wrangler.
+# OpenNext requires Node.js built-ins on Workers.
+compatibility_flags = ["nodejs_compat"]
+
+routes = [
+  { pattern = "openclawai.club/*", zone_name = "openclawai.club" }
+]
 
 [vars]
 NODE_VERSION = "22"
