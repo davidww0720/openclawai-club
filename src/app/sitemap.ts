@@ -6,7 +6,20 @@ const siteUrl = "https://openclawai.club";
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  const staticRoutes = ["/", "/docs", "/blog", "/changelog", "/game"].map(
+  const docsDays = Array.from({ length: 7 }, (_, i) => `/docs/day-${i + 1}`);
+  const zhDocsDays = Array.from({ length: 7 }, (_, i) => `/zh/docs/day-${i + 1}`);
+
+  const staticRoutes = [
+    "/",
+    "/zh",
+    "/docs",
+    ...docsDays,
+    "/zh/docs",
+    ...zhDocsDays,
+    "/blog",
+    "/changelog",
+    "/game",
+  ].map(
     (path) => ({
       url: `${siteUrl}${path}`,
       lastModified: now,
