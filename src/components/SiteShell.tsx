@@ -10,9 +10,9 @@ export function SiteShell({
   const items =
     locale === "zh"
       ? [
-          { href: "/zh/docs", label: "Docs" },
-          { href: "/zh/blog", label: "Blog" },
-          { href: "/zh/changelog", label: "Changelog" },
+          { href: "/zh/docs", label: "文档" },
+          { href: "/zh/blog", label: "博客" },
+          { href: "/zh/changelog", label: "更新日志" },
         ]
       : [
           { href: "/docs", label: "Docs" },
@@ -21,12 +21,29 @@ export function SiteShell({
         ];
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
+    <div className="min-h-screen bg-[var(--bg-primary)] text-slate-100">
       <SiteNav items={items} />
-      <div className="mx-auto max-w-5xl px-6 py-12">{children}</div>
-      <footer className="border-t border-white/10 py-10">
-        <div className="mx-auto max-w-5xl px-6 text-xs text-slate-400">
-          © {new Date().getFullYear()} OpenClawAI.club · Built with OpenClaw
+      <main className="mx-auto max-w-5xl px-6 py-12">{children}</main>
+      <footer className="border-t border-[var(--border-subtle)] py-10">
+        <div className="mx-auto max-w-5xl px-6">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-[var(--text-muted)]">
+            <div className="flex items-center gap-2">
+              <span className="mono text-xs">›</span>
+              <span>{new Date().getFullYear()} OpenClawAI.club</span>
+            </div>
+            <div className="flex items-center gap-4">
+              <span className="text-xs">Built with OpenClaw</span>
+              <span className="text-[var(--border-default)]">|</span>
+              <a 
+                href="https://github.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-xs hover:text-[var(--text-secondary)] transition-colors"
+              >
+                GitHub
+              </a>
+            </div>
+          </div>
         </div>
       </footer>
     </div>

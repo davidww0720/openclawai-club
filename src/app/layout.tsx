@@ -1,25 +1,27 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { DM_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://openclawai.club"),
   title: {
-    default: "OpenClawAI.club｜OpenClaw 实战与 AI Agent 工作流",
-    template: "%s｜OpenClawAI.club",
+    default: "OpenClawAI.club | OpenClaw Tutorials & AI Agent Workflows",
+    template: "%s | OpenClawAI.club",
   },
   description:
-    "OpenClaw 实战教程、AI Agent 自动化工作流与部署运维记录。",
+    "OpenClaw practical tutorials, AI agent automation workflows, and deployment operations. Build real AI assistants with Telegram control, model routing, and fallbacks.",
   alternates: {
     canonical: "/",
   },
@@ -27,9 +29,9 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://openclawai.club/",
     siteName: "OpenClawAI.club",
-    title: "OpenClawAI.club｜OpenClaw 实战与 AI Agent 工作流",
+    title: "OpenClawAI.club | OpenClaw Tutorials & AI Agent Workflows",
     description:
-      "OpenClaw 实战教程、AI Agent 自动化工作流与部署运维记录。",
+      "OpenClaw practical tutorials, AI agent automation workflows, and deployment operations.",
   },
   robots: {
     index: true,
@@ -45,7 +47,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${dmSans.variable} ${jetbrainsMono.variable} antialiased bg-grid`}
       >
         {children}
       </body>
