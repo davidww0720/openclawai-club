@@ -4,12 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "gen:posts": "node ops/scripts/gen-posts.mjs",
+    "build": "npm run gen:posts && next build",
     "start": "next start",
     "lint": "eslint",
-    "cf:build": "next build",
+    "cf:build": "npm run gen:posts && next build",
     "cf:preview": "opennextjs-cloudflare",
-    "pages:build": "next build && opennextjs-cloudflare build"
+    "pages:build": "npm run gen:posts && next build && opennextjs-cloudflare build"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",

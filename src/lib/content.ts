@@ -1,6 +1,4 @@
-import fs from "node:fs";
-import path from "node:path";
-import matter from "gray-matter";
+import { POST_MAP, POST_SLUGS, POSTS } from "@/generated/posts";
 
 export type PostMeta = {
   slug: string;
@@ -10,39 +8,20 @@ export type PostMeta = {
   tags?: string[];
 };
 
-const POSTS_DIR = path.join(process.cwd(), "content", "posts");
-
 export function listPostSlugs(): string[] {
-  if (!fs.existsSync(POSTS_DIR)) return [];
-  return fs
-    .readdirSync(POSTS_DIR)
-    .filter((f) => f.endsWith(".md"))
-    .map((f) => f.replace(/\.md$/, ""))
-    .sort()
-    .reverse();
-}
-
-export function getPostMeta(slug: string): PostMeta {
-  const file = path.join(POSTS_DIR, `${slug}.md`);
-  const raw = fs.readFileSync(file, "utf8");
-  const { data } = matter(raw);
-
-  return {
-    slug,
-    title: String(data.title ?? slug),
-    description: data.description ? String(data.description) : undefined,
-    date: data.date ? String(data.date) : undefined,
-    tags: Array.isArray(data.tags) ? data.tags.map(String) : undefined,
-  };
-}
-
-export function getPost(slug: string): { meta: PostMeta; content: string } {
-  const file = path.join(POSTS_DIR, `${slug}.md`);
-  const raw = fs.readFileSync(file, "utf8");
-  const { data, content } = matter(raw);
-  return { meta: getPostMeta(slug), content };
+  // newest first by slug (we use YYYY-MM-DD-* naming)
+  return [...POST_SLUGS].sort().reverse();
 }
 
 export function listPosts(): PostMeta[] {
-  return listPostSlugs().map(getPostMeta);
+  return [...POSTS]
+    .map(({ content: _content, ...meta }) => meta)
+    .sort((a, b) => (a.slug < b.slug ? 1 : -1));
+}
+
+export function getPost(slug: string): { meta: PostMeta; content: string } {
+  const p = POST_MAP[slug];
+  if (!p) throw new Error(`Post not found: ${slug}`);
+  const { content, ...meta } = p;
+  return { meta, content };
 }
